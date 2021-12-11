@@ -1,0 +1,961 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Labyrinth</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="paper-full.min.js"></script>
+  <script type="text/paperscript" canvas="canvas-1">
+    // Adapted from the following Processing example:
+  // http://processing.org/learning/topics/follow3.html
+
+  // The amount of points in the path:
+  var points = 40;
+
+  // The distance between the points:
+  var length = 50;
+
+  var path = new Path({
+  	strokeColor: 'rgb(9, 9, 9)',
+  	strokeWidth: 1,
+  	strokeCap: 'round'
+  });
+
+  var start = view.center / [10, 1];
+  for (var i = 0; i < points; i++)
+  	path.add(start + new Point(i * length, 0));
+
+  function onMouseMove(event) {
+  	path.firstSegment.point = event.point;
+  	for (var i = 0; i < points - 1; i++) {
+  		var segment = path.segments[i];
+  		var nextSegment = segment.next;
+  		var vector = segment.point - nextSegment.point;
+  		vector.length = length;
+  		nextSegment.point = segment.point - vector;
+  	}
+  	path.smooth({ type: 'continuous' });
+  }
+
+  function onMouseDown(event) {
+  	path.fullySelected = true;
+  	path.strokeColor = 'rgb(255, 0, 0)';
+  }
+
+  function onMouseUp(event) {
+  	path.fullySelected = false;
+  	path.strokeColor = 'rgb(9, 9, 9)';
+  }
+  </script>
+
+
+</head>
+
+<body>
+
+  <div class="canvas">
+    <canvas id="canvas-1" resize></canvas>
+  </div>
+
+
+  <!-- always there -->
+
+  <div>
+    <div class="enter" id="enter2">๑</div>
+    <img class="question" src="img/question.png">
+  </div>
+
+  <div>
+    <div class="enter" id="enter1">๑</div>
+    <img class="question" src="img/question.png">
+  </div>
+
+
+  <!-- section1 -->
+  <div class="begin-board">
+    <img class="labyrinth" src="img/labyrinth.jpeg">
+  </div>
+
+  <!-- section2 -->
+  <div class="flight-bottom"><img class="flight-img" src="img/flight-bottom.jpg"></div>
+
+  <div class="flight-board" id="sky">
+
+    <img class="flight" src="img/sky-2.jpg">
+    <img class="flight-1" src="img/sky-3.jpg">
+
+  <img class="taipei-bottom" src="img/taipei.png">
+
+  <img class="ric-bottom" src="img/ric.png">
+
+  </div>
+
+  <!-- section A-->
+  <div class="code">
+    2019dQpBx39Ut9NobRRTAkbP????2019k04t4GWXabqJSQ60IziY????2019JX8MDO*R8UPe#ACc%VLN????2019rt0MXSQR4ePJ9RBWA1dh????2019rQMJOXX2jEnQx9e6%RYe????2019n2Hq7DScCqb!B1QiKtxA???2019K7rEzy2gMswtG^su%p!K????2019ZZPXA1yTJ2$7rFruMo!m????2019WV9FWFjhiwn7e455hFy4????2019jIfDoIntJySa#l&*9MUs????2019dFqcXVG^!UoJxC1D272&????2019@3@MLO8DFAP#14!k*s2e????2019TCX4tx@LvtH$BO1drM8X????2019G8hwj^CsCbEj#WHRSEjX????20193AdTBj&vKhQ2rB70Z71M????201986$&chEcx@5$$EtDBos@????20193faj5JW4Vk8@pjw*1ON^????20196rFg$GR!yJ03mEHelu*z????2019VQ^ndUXlZPo58MhGFZ$1????2019P#^s4CVZgkyw9rtdhduf????2019Xi1@%U1PYJRyRhXWL4vd????201942WcTz^I!@x#7ugVVPcB????2019j#E64*ied@$zNvlNC$oW????20193bUFFO2T!qsdawxoL4gK????<span class="flower-bottom">✿ photosensitive warning THE FOLLOWING CONTAINS BRIGHT/FLASHING LIGHTS</span>9jqkKtf2BePaYa4EOYtMM????2019ULSCt#bsJx@fOMeXHGIO????2019qTj@VgtVDZ#sPr6qFC83????2019q*!O52SZp!hpfvUnpYVy????2019EADXOjZV0OjT3eGBc8gE????2019JH^4m%*y$fAPpW&qDded????20190sCRNgiYywvifWrb#eLX????2019qyCZ9NiRyDDhtvKfIb5q????2019l7ZsIh4R%OwYfsqT3!B8????2019NLxWXZ3mT&2ywCQFuRdV????2019nh8Q^sa@RpGQPvF&GdDe????2019aNXtUnV*nXddao7UjRE3???2019IR19C5qLyhWPU347m$kx????2019NZpZQ5DnJA^j*nYqrM35????2019cxNUfrW9YD0Lxre!OqZu????2019AKwQ@uzsY5K8zrt8hk9O????2019c6Et@fSdp1mJD7HRmHGc????2019G#dpz*oFx2%o1rHgNCEO????2019c0@$$w%udbHzkW4@QETU????2019dLrYbEWtqWFA3r0^FZCb????20195!c$oEE6EF0SNvXQXWfA????2019uZIN5$OcL@eg8qaip4Vi????2019STf&%xCu^d4MEtmpJyzD????2019T53r!nzxCV7CaoitNeQs????2019d6DHTAjqc8&PDyzaUJWU????20194K@9h5k&3DO5Zxit&xg6????2019qj1yG2w6t$m7Cm%@JCRH????2019No@n0B^Z*R44&g3RL$Qr????2019W!IyX!hUDoWCLfYS^yGv????2019v$2nj!Df9G^AG2hLhYej????2019kye28%!qPU9EizCCox#D????2019wQiZkKt534zzn57esm1u????2019Q1YR%R@L&F@3rBVfyzgZ????2019zzBglDg%$xh8ywc1Tkw3????2019ETtup8@SKh61E$JTUHjd????2019@StBqMMBITIsNukFM867????2019rkNOdO9*qmmw&&78vju6????2019$w&hOyDp%YDGB$zYmi7&????2019S7cvUt@$zRc#UVVC^Bg5????2019uvL8l*OxJ4kTCsfqGu7i????20197Z*kNCJdfqwQ%YM#bTxm????2019EqbQSwSx%X@NuF#oeQSn????2019mxZP6ZAcYfEf*e9Wj1o7????19HXbM7mwlWhMijFOS2BQ#????2019^%uzP*Jh$DDeIs$5rhmE????2019A$I!0Q5py!aoNW8G4pGM????2019Z92CtJZob71KhjK9TeqG????2019pVE1kkO$DZtyvjcS3lcJ????20195wGCgWiIjiULbDQrWveF???019F5XfiHUDk&*bvBqjkUv^????2019%M3XXbNUKCOz#tK!d2Mz????2019iZRmeWMoO$zK0$7D!y!Z????20193jzNVPqPk%YyBogWvhgh????2019CKdFfPgndYOIvE4z&$UI????2019ojm47TR9eDoV3!ltlH2g???2019QGF^V1fnx6w@mfcRoKI0????2019qBnEPLvCfM*U#WXQ1Wq0????2019AVu5PoliRk*eGTB@@ksI????2019EQ!XpMCqpBT0Mext$4j$????2019hn#pvoclxL$GI7paXOZ0????2019yZ4X7E$$wA8fOF84rw9u????2019P3VYB9#XG6wej%BDG8Bx????2019$^LSRu&@j*soxov3m$AR????2019DnGzRUq&SjYpS5GjXm7A????20196yF43lbUHXFN#iVvB$iE????2019uV629GAUWxtT6cB42Q0t????2019B2A!&Dx#qc$Peyz8vuGv????2019gW1I^qBJwl*C9#209rHP????2019XG@3XyBcT#dz4Jsg2C!3????01920oKj&jz!Yo5MKH%h%yk????2019s4x$0Zuqr$od@$kFt4F0????2019ITyL&wq*3YX&y%iH3olL????2019CiICvVy@P$JLbdDPCPyR????2019lTGbt2#LC%Du6KFqSCJl????2019lG6I0Gh$Wl4ZJx%&tvtL????20197mTJ6%9I2ldUZliI44eV????2019wEFLE$iMb2OS$6hZAG7X????2019rTlAL3OLacoxC$j*DvRv????2019EF6NRwz1VZbK6UQ58cr5????2019Abz%eS84&E1r!n76VcF1????2019HFhlb&3QqqtEJM%Vk58x????2019nuHZFaXZShV4ft&cD7%7????20190mN6KnBcOctXMe7fCn&W????20190#0FLJJXY*fTEWeZ9XYG????2019!VL*Apk*CrX5XRNiq3Ds????2019VIoP3Nzqc1VMCXRv!tFK????2019DIGJyRdrEAFO5$$7K4UF????2019OdXF8GwxPIgBnlR*$5Fr????20193SQ6jfv8o9DLcpR&^WX1????2019ih^Y^sMnoipugltR#vIR????2019TsJo*x#qTMZIE8yEn2DE????2019aZxa8$OX9Sd9U&r4OSFn????2019W0PpFSdzoHHWNmQ#nbCx????2019TnbvMW4Oi5o3pKpKUJ@p????2019PpxHxkaU0InF!AmbHOXL????2019&*iP1$CT4W#YAZA5!4O&????20195R9AfF8$93cIiMd$o3pe????2019&uCg!XwCzowHh@IGC%IC????2019E1PV6Dsd^7jMudYLfGmO????2019c22I8!p540lhj$8!QVuV????2019F2&o8Cj^w^sU8Jf&o$V7????2019CHOIzEB6#sdw6Oz8tsL@????2019ItB8jbSKfb8MHdKKFP1%????2019gZ@OmgKMjQE7@&fp11hW????2019ehXtM1^EkNDHen#oVeBk????2019dj0FsoawjCAE0$keUH5V????2019AxJBW!3#C%bwl5WEIVIQ????2019zC!95hhjh2RW664IcUCo????2019WEvLh2hjfLbxLVTXxxV4????2019&VG9Xm25xFvuiHqCJNpt????2019kKENAdXDv7Za2G4CEZ8m????2019Lgl&Q0dmLEDLEZXA@1QN????20199rngJ2iktkXECm7UUSnd????2019&eFdJ!25E3^Mfon4u8pj????2019!30#bzr2NFks3hBOJFo0????2019u9CBrvmwOS7K73rx5NUa???2019CcCqhAPr3pKFQ&6RJFy!????2019WjN!58iv2IRJpHUOD5j#????2019C@tKAG@KMUaA4f8NlR*B????2019vyO2Yqe2pdo2kKPz5Yip????2019yO0%z1Dfh7NNAUySB&og????2019A3R9kn^T1KSrBYAmCOD2???20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????20196^6Y$mKHvt2GZ7FdAWVF????2019sKPXJRlV1cTy4vfeRi1&????2019angLU52oUmjtng!KusKl???2019y9tBEbO$oiLY0DkiBETD????2019TZv4TcF#truo3JdoTIe3????2019n%lt6jIZi8uIWjV$$%gd????2019UGNrSjbbF0OgoprxonB%????2019rA#AMClW!9*9L##sHn%w????2019jcohnFxDOacg!tK$UudM????2019y8zJRJMuP#6kfBrkxuu@????2019Yc5CyN*mv8!a$K2KKTRP????20192HuS!MH$!mDCIc%Fa@tJ????2019r8WZ3d1LSPBVcezb!&hn????2019HO0CQb0HDKV1s11HX3vY????20197yzI0tNDdLX0pN5T4rtb????2019qvpwsXEGSOfKzER4PkcG????2019cP&I@DguL8hb4IF#d1Xv????20192vJAlRKf57cyR69r*oD$????2019*sIFZy6nTPHe6vm*t*ar????2019E8mq8yqevMwGW%mo*dRE????201993cUyoW9bdZaDa8Y6fwt????20196vuXKpVDXXd&@1oXsgko????2019TL2a0#TxoykM8aLn7L*u????20198$*hOFe6bEM0hk7YvH%O????20198ltHcezNifOnVkxG#L$B????20192#13VDrgjG10CluZPS4f????2019iredOmqtqbUQO#@LrSdG????2019dQpBx39Ut9NobRRTAkbP????2019k04t4GWXabqJSQ60IziY???2019JX8MDO*R8UPe#ACc%VLN????2019rt0MXSQR4ePJ9RBWA1dh????2019rQMJOXX2jEnQx9e6%RYe????2019n2Hq7DScCqb!B1QiKtxA???2019K7rEzy2gMswtG^su%p!K????2019ZZPXA1yTJ2$7rFruMo!m????2019WV9FWFjhiwn7e455hFy4????2019jIfDoIntJySa#l&*9MUs????2019dFqcXVG^!UoJxC1D272&????2019@3@MLO8DFAP#14!k*s2e????2019TCX4tx@LvtH$BO1drM8X????2019G8hwj^CsCbEj#WHRSEjX????20193AdTBj&vKhQ2rB70Z71M????201986$&chEcx@5$$EtDBos@????20193faj5JW4Vk8@pjw*1ON^????20196rFg$GR!yJ03mEHelu*z????2019VQ^ndUXlZPo58MhGFZ$1????2019P#^s4CVZgkyw9rtdhduf????2019Xi1@%U1PYJRyRhXWL4vd????201942WcTz^I!@x#7ugVVPcB????2019j#E64*ied@$zNvlNC$oW????20193bUFFO2T!qsdawxoL4gK????9jqkKtf2BePaYa4EOYtMM????2019ULSCt#bsJx@fOMeXHGIO????2019qTj@VgtVDZ#sPr6qFC83????2019q*!O52SZp!hpfvUnpYVy????2019EADXOjZV0OjT3eGBc8gE????2019JH^4m%*y$fAPpW&qDded????20190sCRNgiYywvifWrb#eLX????2019qyCZ9NiRyDDhtvKfIb5q????2019l7ZsIh4R%OwYfsqT3!B8????2019NLxWXZ3mT&2ywCQFuRdV????2019nh8Q^sa@RpGQPvF&GdDe????2019aNXtUnV*nXddao7UjRE3???2019IR19C5qLyhWPU347m$kx????2019NZpZQ5DnJA^j*nYqrM35????2019cxNUfrW9YD0Lxre!OqZu????2019AKwQ@uzsY5K8zrt8hk9O????2019c6Et@fSdp1mJD7HRmHGc????2019G#dpz*oFx2%o1rHgNCEO????2019c0@$$w%udbHzkW4@QETU????2019dLrYbEWtqWFA3r0^FZCb????20195!c$oEE6EF0SNvXQXWfA????2019uZIN5$OcL@eg8qaip4Vi????2019STf&%xCu^d4MEtmpJyzD????2019T53r!nzxCV7CaoitNeQs????2019d6DHTAjqc8&PDyzaUJWU????20194K@9h5k&3DO5Zxit&xg6????2019qj1yG2w6t$m7Cm%@JCRH????2019No@n0B^Z*R44&g3RL$Qr????2019W!IyX!hUDoWCLfYS^yGv????2019v$2nj!Df9G^AG2hLhYej????2019kye28%!qPU9EizCCox#D????2019wQiZkKt534zzn57esm1u????2019Q1YR%R@L&F@3rBVfyzgZ????2019zzBglDg%$xh8ywc1Tkw3????2019ETtup8@SKh61E$JTUHjd????2019@StBqMMBITIsNukFM867????2019rkNOdO9*qmmw&&78vju6????2019$w&hOyDp%YDGB$zYmi7&????2019S7cvUt@$zRc#UVVC^Bg5????2019uvL8l*OxJ4kTCsfqGu7i????20197Z*kNCJdfqwQ%YM#bTxm????2019EqbQSwSx%X@NuF#oeQSn????2019mxZP6ZAcYfEf*e9Wj1o7????19HXbM7mwlWhMijFOS2BQ#????2019^%uzP*Jh$DDeIs$5rhmE????2019A$I!0Q5py!aoNW8G4pGM????2019Z92CtJZob71KhjK9TeqG????2019pVE1kkO$DZtyvjcS3lcJ????20195wGCgWiIjiULbDQrWveF???019F5XfiHUDk&*bvBqjkUv^????2019%M3XXbNUKCOz#tK!d2Mz????2019iZRmeWMoO$zK0$7D!y!Z????20193jzNVPqPk%YyBogWvhgh????2019CKdFfPgndYOIvE4z&$UI????2019ojm47TR9eDoV3!ltlH2g???2019QGF^V1fnx6w@mfcRoKI0????2019qBnEPLvCfM*U#WXQ1Wq0????2019AVu5PoliRk*eGTB@@ksI????2019EQ!XpMCqpBT0Mext$4j$????2019hn#pvoclxL$GI7paXOZ0????2019yZ4X7E$$wA8fOF84rw9u????2019P3VYB9#XG6wej%BDG8Bx????2019$^LSRu&@j*soxov3m$AR????2019DnGzRUq&SjYpS5GjXm7A????20196yF43lbUHXFN#iVvB$iE????2019uV629GAUWxtT6cB42Q0t????2019B2A!&Dx#qc$Peyz8vuGv????2019gW1I^qBJwl*C9#209rHP????2019XG@3XyBcT#dz4Jsg2C!3????01920oKj&jz!Yo5MKH%h%yk????2019s4x$0Zuqr$od@$kFt4F0????2019ITyL&wq*3YX&y%iH3olL????2019CiICvVy@P$JLbdDPCPyR????2019lTGbt2#LC%Du6KFqSCJl????2019lG6I0Gh$Wl4ZJx%&tvtL????20197mTJ6%9I2ldUZliI44eV????2019wEFLE$iMb2OS$6hZAG7X????2019rTlAL3OLacoxC$j*DvRv????2019EF6NRwz1VZbK6UQ58cr5????2019Abz%eS84&E1r!n76VcF1????2019HFhlb&3QqqtEJM%Vk58x????2019nuHZFaXZShV4ft&cD7%7????20190mN6KnBcOctXMe7fCn&W????20190#0FLJJXY*fTEWeZ9XYG????2019!VL*Apk*CrX5XRNiq3Ds????2019VIoP3Nzqc1VMCXRv!tFK????2019DIGJyRdrEAFO5$$7K4UF????2019OdXF8GwxPIgBnlR*$5Fr????20193SQ6jfv8o9DLcpR&^WX1????2019ih^Y^sMnoipugltR#vIR????2019TsJo*x#qTMZIE8yEn2DE????2019aZxa8$OX9Sd9U&r4OSFn????2019W0PpFSdzoHHWNmQ#nbCx????2019TnbvMW4Oi5o3pKpKUJ@p????2019PpxHxkaU0InF!AmbHOXL????2019&*iP1$CT4W#YAZA5!4O&????20195R9AfF8$93cIiMd$o3pe????2019&uCg!XwCzowHh@IGC%IC????2019E1PV6Dsd^7jMudYLfGmO????2019c22I8!p540lhj$8!QVuV????2019F2&o8Cj^w^sU8Jf&o$V7????2019CHOIzEB6#sdw6Oz8tsL@????2019ItB8jbSKfb8MHdKKFP1%????2019gZ@OmgKMjQE7@&fp11hW????2019ehXtM1^EkNDHen#oVeBk????2019dj0FsoawjCAE0$keUH5V????2019AxJBW!3#C%bwl5WEIVIQ????2019zC!95hhjh2RW664IcUCo????2019WEvLh2hjfLbxLVTXxxV4????2019&VG9Xm25xFvuiHqCJNpt????2019kKENAdXDv7Za2G4CEZ8m????2019Lgl&Q0dmLEDLEZXA@1QN????20199rngJ2iktkXECm7UUSnd????2019&eFdJ!25E3^Mfon4u8pj????2019!30#bzr2NFks3hBOJFo0????2019u9CBrvmwOS7K73rx5NUa???2019CcCqhAPr3pKFQ&6RJFy!????2019WjN!58iv2IRJpHUOD5j#????2019C@tKAG@KMUaA4f8NlR*B????2019vyO2Yqe2pdo2kKPz5Yip????2019yO0%z1Dfh7NNAUySB&og????2019A3R9kn^T1KSrBYAmCOD2???20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????20196^6Y$mKHvt2GZ7FdAWVF????2019sKPXJRlV1cTy4vfeRi1&????2019angLU52oUmjtng!KusKl???2019y9tBEbO$oiLY0DkiBETD????2019TZv4TcF#truo3JdoTIe3????2019n%lt6jIZi8uIWjV$$%gd????2019UGNrSjbbF0OgoprxonB%????2019rA#AMClW!9*9L##sHn%w????2019jcohnFxDOacg!tK$UudM????2019y8zJRJMuP#6kfBrkxuu@????2019Yc5CyN*mv8!a$K2KKTRP????20192HuS!MH$!mDCIc%Fa@tJ????2019r8WZ3d1LSPBVcezb!&hn????2019HO0CQb0HDKV1s11HX3vY????20197yzI0tNDdLX0pN5T4rtb????2019qvpwsXEGSOfKzER4PkcG????2019cP&I@DguL8hb4IF#d1Xv????20192vJAlRKf57cyR69r*oD$????2019*sIFZy6nTPHe6vm*t*ar????2019E8mq8yqevMwGW%mo*dRE????201993cUyoW9bdZaDa8Y6fwt????20196vuXKpVDXXd&@1oXsgko????2019TL2a0#TxoykM8aLn7L*u????20198$*hOFe6bEM0hk7YvH%O????20198ltHcezNifOnVkxG#L$B????20192#13VDrgjG10CluZPS4f????2019iredOmqtqbUQO#@LrSdG????2019PpxHxkaU0InF!AmbHOXL????2019&*iP1$CT4W#YAZA5!4O&????20195R9AfF8$93cIiMd$o3pe????2019&uCg!XwCzowHh@IGC%IC????2019E1PV6Dsd^7jMudYLfGmO????2019c22I8!p540lhj$8!QVuV????2019F2&o8Cj^w^sU8Jf&o$V7????2019CHOIzEB6#sdw6Oz8tsL@????2019ItB8jbSKfb8MHdKKFP1%????2019gZ@OmgKMjQE7@&fp11hW????2019ehXtM1^EkNDHen#oVeBk????2019dj0FsoawjCAE0$keUH5V????2019AxJBW!3#C%bwl5WEIVIQ????2019zC!95hhjh2RW664IcUCo????2019WEvLh2hjfLbxLVTXxxV4????2019&VG9Xm25xFvuiHqCJNpt????2019kKENAdXDv7Za2G4CEZ8m????2019Lgl&Q0dmLEDLEZXA@1QN????20199rngJ2iktkXECm7UUSnd????2019&eFdJ!25E3^Mfon4u8pj????2019!30#bzr2NFks3hBOJFo0????2019u9CBrvmwOS7K73rx5NUa???2019CcCqhAPr3pKFQ&6RJFy!????2019WjN!58iv2IRJpHUOD5j#????2019C@tKAG@KMUaA4f8NlR*B????2019vyO2Yqe2pdo2kKPz5Yip????2019yO0%z1Dfh7NNAUySB&og????2019A3R9kn^T1KSrBYAmCOD2???20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????20196^6Y$mKHvt2GZ7FdAWVF????2019sKPXJRlV1cTy4vfeRi1&????2019angLU52oUmjtng!KusKl???2019dQpBx39Ut9NobRRTAkbP????2019k04t4GWXabqJSQ60IziY???2019JX8MDO*R8UPe#ACc%VLN????2019rt0MXSQR4ePJ9RBWA1dh????2019rQMJOXX2jEnQx9e6%RYe????2019n2Hq7DScCqb!B1QiKtxA???2019K7rEzy2gMswtG^su%p!K????2019ZZPXA1yTJ2$7rFruMo!m????2019WV9FWFjhiwn7e455hFy4????2019jIfDoIntJySa#l&*9MUs????2019dFqcXVG^!UoJxC1D272&????2019@3@MLO8DFAP#14!k*s2e????2019TCX4tx@LvtH$BO1drM8X????2019G8hwj^CsCbEj#WHRSEjX????20193AdTBj&vKhQ2rB70Z71M????201986$&chEcx@5$$EtDBos@????20193faj5JW4Vk8@pjw*1ON^????20196rFg$GR!yJ03mEHelu*z????2019VQ^ndUXlZPo58MhGFZ$1????2019P#^s4CVZgkyw9rtdhduf????2019Xi1@%U1PYJRyRhXWL4vd????201942WcTz^I!@x#7ugVVPcB????2019j#E64*ied@$zNvlNC$oW????20193bUFFO2T!qsdawxoL4gK????9jqkKtf2BePaYa4EOYtMM????2019ULSCt#bsJx@fOMeXHGIO????2019qTj@VgtVDZ#sPr6qFC83????2019q*!O52SZp!hpfvUnpYVy????2019EADXOjZV0OjT3eGBc8gE????2019JH^4m%*y$fAPpW&qDded????20190sCRNgiYywvifWrb#eLX????2019qyCZ9NiRyDDhtvKfIb5q????2019l7ZsIh4R%OwYfsqT3!B8????2019NLxWXZ3mT&2ywCQFuRdV????2019nh8Q^sa@RpGQPvF&GdDe????2019aNXtUnV*nXddao7UjRE3???2019IR19C5qLyhWPU347m$kx????2019NZpZQ5DnJA^j*nYqrM35????2019cxNUfrW9YD0Lxre!OqZu????2019AKwQ@uzsY5K8zrt8hk9O????2019c6Et@fSdp1mJD7HRmHGc????2019G#dpz*oFx2%o1rHgNCEO????2019c0@$$w%udbHzkW4@QETU????2019dLrYbEWtqWFA3r0^FZCb????20195!c$oEE6EF0SNvXQXWfA????2019uZIN5$OcL@eg8qaip4Vi????2019STf&%xCu^d4MEtmpJyzD????2019T53r!nzxCV7CaoitNeQs????2019d6DHTAjqc8&PDyzaUJWU????20194K@9h5k&3DO5Zxit&xg6????2019qj1yG2w6t$m7Cm%@JCRH????2019No@n0B^Z*R44&g3RL$Qr????2019W!IyX!hUDoWCLfYS^yGv????2019v$2nj!Df9G^AG2hLhYej????2019kye28%!qPU9EizCCox#D????2019wQiZkKt534zzn57esm1u????2019Q1YR%R@L&F@3rBVfyzgZ????2019zzBglDg%$xh8ywc1Tkw3????2019ETtup8@SKh61E$JTUHjd????2019@StBqMMBITIsNukFM867????2019rkNOdO9*qmmw&&78vju6????2019$w&hOyDp%YDGB$zYmi7&????2019S7cvUt@$zRc#UVVC^Bg5????2019uvL8l*OxJ4kTCsfqGu7i????20197Z*kNCJdfqwQ%YM#bTxm????2019EqbQSwSx%X@NuF#oeQSn????2019mxZP6ZAcYfEf*e9Wj1o7????19HXbM7mwlWhMijFOS2BQ#????2019^%uzP*Jh$DDeIs$5rhmE????2019A$I!0Q5py!aoNW8G4pGM????2019Z92CtJZob71KhjK9TeqG????2019pVE1kkO$DZtyvjcS3lcJ????20195wGCgWiIjiULbDQrWveF???019F5XfiHUDk&*bvBqjkUv^????2019%M3XXbNUKCOz#tK!d2Mz????2019iZRmeWMoO$zK0$7D!y!Z????20193jzNVPqPk%YyBogWvhgh????2019CKdFfPgndYOIvE4z&$UI????2019ojm47TR9eDoV3!ltlH2g???2019QGF^V1fnx6w@mfcRoKI0????2019qBnEPLvCfM*U#WXQ1Wq0????20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????20196^6Y$mKHvt2GZ7FdAWVF????2019sKPXJRlV1cTy4vfeRi1&????2019angLU52oUmjtng!KusKl???2019y9tBEbO$oiLY0DkiBETD????2019TZv4TcF#truo3JdoTIe3????2019n%lt6jIZi8uIWjV$$%gd????2019UGNrSjbbF0OgoprxonB%????2019rA#AMClW!9*9L##sHn%w????2019jcohnFxDOacg!tK$UudM????2019y8zJRJMuP#6kfBrkxuu@????2019Yc5CyN*mv8!a$K2KKTRP????20192HuS!MH$!mDCIc%Fa@tJ????2019&*iP1$CT4W#YAZA5!4O&????20195R9AfF8$93cIiMd$o3pe????2019&uCg!XwCzowHh@IGC%IC????2019E1PV6Dsd^7jMudYLfGmO????2019c22I8!p540lhj$8!QVuV????2019F2&o8Cj^w^sU8Jf&o$V7????2019CHOIzEB6#sdw6Oz8tsL@????2019ItB8jbSKfb8MHdKKFP1%????2019gZ@OmgKMjQE7@&fp11hW????2019ehXtM1^EkNDHen#oVeBk????2019dj0FsoawjCAE0$keUH5V????2019AxJBW!3#C%bwl5WEIVIQ????2019zC!95hhjh2RW664IcUCo????2019WEvLh2hjfLbxLVTXxxV4????2019&VG9Xm25xFvuiHqCJNpt????2019kKENAdXDv7Za2G4CEZ8m????2019Lgl&Q0dmLEDLEZXA@1QN????20199rngJ2iktkXECm7UUSnd????2019&eFdJ!25E3^Mfon4u8pj????2019!30#bzr2NFks3hBOJFo0????2019u9CBrvmwOS7K73rx5NUa???2019CcCqhAPr3pKFQ&6RJFy!????2019WjN!58iv2IRJpHUOD5j#????2019C@tKAG@KMUaA4f8NlR*B????2019vyO2Yqe2pdo2kKPz5Yip????2019yO0%z1Dfh7NNAUySB&og????2019A3R9kn^T1KSrBYAmCOD2???20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????2019cxNUfrW9YD0Lxre!OqZu????2019AKwQ@uzsY5K8zrt8hk9O????2019c6Et@fSdp1mJD7HRmHGc????2019G#dpz*oFx2%o1rHgNCEO????2019c0@$$w%udbHzkW4@QETU????2019dLrYbEWtqWFA3r0^FZCb????20195!c$oEE6EF0SNvXQXWfA????2019uZIN5$OcL@eg8qaip4Vi????2019STf&%xCu^d4MEtmpJyzD????2019T53r!nzxCV7CaoitNeQs????2019d6DHTAjqc8&PDyzaUJWU????20194K@9h5k&3DO5Zxit&xg6????2019qj1yG2w6t$m7Cm%@JCRH????2019No@n0B^Z*R44&g3RL$Qr????2019W!IyX!hUDoWCLfYS^yGv????2019v$2nj!Df9G^AG2hLhYej????2019kye28%!qPU9EizCCox#D????2019wQiZkKt534zzn57esm1u????2019Q1YR%R@L&F@3rBVfyzgZ????2019zzBglDg%$xh8ywc1Tkw3????2019ETtup8@SKh61E$JTUHjd????2019@StBqMMBITIsNukFM867????2019rkNOdO9*qmmw&&78vju6????2019$w&hOyDp%YDGB$zYmi7&????2019S7cvUt@$zRc#UVVC^Bg5????2019uvL8l*OxJ4kTCsfqGu7i????20197Z*kNCJdfqwQ%YM#bTxm????2019EqbQSwSx%X@NuF#oeQSn????2019mxZP6ZAcYfEf*e9Wj1o7????19HXbM7mwlWhMijFOS2BQ#????2019^%uzP*Jh$DDeIs$5rhmE????2019A$I!0Q5py!aoNW8G4pGM????2019Z92CtJZob71KhjK9TeqG????2019pVE1kkO$DZtyvjcS3lcJ????20195wGCgWiIjiULbDQrWveF???019F5XfiHUDk&*bvBqjkUv^????2019%M3XXbNUKCOz#tK!d2Mz????2019iZRmeWMoO$zK0$7D!y!Z????20193jzNVPqPk%YyBogWvhgh????2019CKdFfPgndYOIvE4z&$UI????2019ojm47TR9eDoV3!ltlH2g???2019QGF^V1fnx6w@mfcRoKI0????2019qBnEPLvCfM*U#WXQ1Wq0????20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????20196^6Y$mKHvt2GZ7FdAWVF????2019sKPXJRlV1cTy4vfeRi1&????2019angLU52oUmjtng!KusKl???2019y9tBEbO$oiLY0DkiBETD????2019TZv4TcF#truo3JdoTIe3????2019n%lt6jIZi8uIWjV$$%gd????2019UGNrSjbbF0OgoprxonB%????2019rA#AMClW!9*9L##sHn%w????2019jcohnFxDOacg!tK$UudM????2019y8zJRJMuP#6kfBrkxuu@????2019Yc5CyN*mv8!a$K2KKTRP????20192HuS!MH$!mDCIc%Fa@tJ????2019&*iP1$CT4W#YAZA5!4O&????20195R9AfF8$93cIiMd$o3pe????2019&uCg!XwCzowHh@IGC%IC????2019E1PV6Dsd^7jMudYLfGmO????2019c22I8!p540lhj$8!QVuV????2019F2&o8Cj^w^sU8Jf&o$V7????2019CHOIzEB6#sdw6Oz8tsL@????2019ItB8jbSKfb8MHdKKFP1%????2019gZ@OmgKMjQE7@&fp11hW????2019ehXtM1^EkNDHen#oVeBk????2019dj0FsoawjCAE0$keUH5V????2019AxJBW!3#C%bwl5WEIVIQ????2019zC!95hhjh2RW664IcUCo????2019WEvLh2hjfLbxLVTXxxV4????2019&VG9Xm25xFvuiHqCJNpt????2019kKENAdXDv7Za2G4CEZ8m????2019Lgl&Q0dmLEDLEZXA@1QN????20199rngJ2iktkXECm7UUSnd????2019&eFdJ!25E3^Mfon4u8pj????2019!30#bzr2NFks3hBOJFo0????2019u9CBrvmwOS7K73rx5NUa???2019CcCqhAPr3pKFQ&6RJFy!????2019WjN!58iv2IRJpHUOD5j#????2019C@tKAG@KMUaA4f8NlR*B????2019vyO2Yqe2pdo2kKPz5Yip????2019yO0%z1Dfh7NNAUySB&og????2019A3R9kn^T1KSrBYAmCOD2???20199YjIAF^JMB^4z3@iKoQ0????2019pB9u#KVx&rPQtSYARAvj????2019nQ#Rp!bGSVRNMN97I$EZ????2019PvpY$Cju7gtPs!PfT7XI????2019MFBgYdzM41L^j1JM$M8u????2019Btp@$#mSftyxr21zNjdY????2019y&M1aB&np@x2EUldomkd????2019@KCNW!6F7M1BV9Q@1Hsl????20199EqcnXealD%FUinzulM&????
+  </div>
+
+  <!-- section Ric-2 -->
+  <div class="flicker-bottom"></div>
+  <div class="flicker"></div>
+
+  <!-- section Ric-3 -->
+  <div class="line" id="line-bottom"> </div>
+
+  <div class="lines">
+    <div class="lines-1">
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+    </div>
+
+    <div class="lines-2">
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+      <div class="line"> </div>
+    </div>
+  </div>
+
+  <!-- section Tpi-sec1 -->
+  <div class="cloud2" id="cloud-bottom"> </div>
+  <div class="cloud-container">
+    <div class="clouds">
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+      <div class="cloud2"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+      <div class="cloud"></div>
+      <div class="cloud2"></div>
+    </div>
+  </div>
+
+  <div class="face">
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :)
+    <span class="face-bottom">:|</span>
+     :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+    :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D
+    :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :|
+    :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :] :) :| :( :D :[ :]
+
+  </div>
+
+  <div class="math">
+
+    <div class="m-question">
+
+      <div class="math-question"><img class="math-question-1" src="img/math-question.jpg"></div>
+
+      <div class="equal">
+        <div>＝</div>
+      </div>
+
+      <input id="answer" type="text" name="math" value="wander around" width="6%">
+
+    </div>
+
+    <img class="math-answer" src="img/math-answer.jpg">
+    <div class="math-answer-hover"></div>
+
+    <div id="yes">
+      💯
+    </div>
+
+  </div>
+
+  <div class="a"><span class="a-enlarge"></span></div>
+
+
+  <script src="jquery-3.6.0.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script src="functions.js"></script>
+
+</body>
+
+</html>
