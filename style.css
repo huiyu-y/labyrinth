@@ -342,6 +342,7 @@ a{
 
 .math-question {
   width: 40%;
+  min-width: 300px;
 }
 
 .math-question-1 {
@@ -361,6 +362,7 @@ value {
   bottom: 0;
   right: 0;
   width: 20%;
+  min-width: 300px;
 }
 
 .math-answer-hover {
@@ -369,6 +371,7 @@ value {
   right: 0;
   width: 20%;
   height: 15%;
+  min-width: 300px;
   z-index: 100;
   cursor: progress;
 }
